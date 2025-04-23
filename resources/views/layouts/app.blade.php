@@ -654,6 +654,7 @@
                     <ul class="sub-menu__list list-unstyled">
                         <li class="sub-menu__item"><a href="{{ route('home.about') }}" class="menu-link menu-link_us-s">О нас</a></li>
                         <li class="sub-menu__item"><a href="{{ route('contact.index') }}" class="menu-link menu-link_us-s">Связь с нами</a></li>
+                        <li class="sub-menu__item"><a href="{{ route('home.vacancies') }}" class="menu-link menu-link_us-s">Вакансии</a></li>
                     </ul>
                 </div>
 

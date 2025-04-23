@@ -150,9 +150,12 @@
                             @error('name')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-floating my-4">
-                            <input type="text" class="form-control" name="phone" placeholder="Phone *" value="{{ old('phone') }}" required="">
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                   placeholder="Phone *" value="{{ old('phone') }}" required>
                             <label for="contact_us_name">Телефон *</label>
-                            @error('phone')<span class="text-danger">Неправильный формат номера</span>@enderror
+                            @error('phone')
+                            <span class="text-danger">Введите номер в формате: +7 (XXX) XXX-XX-XX</span>
+                            @enderror
                         </div>
                         <div class="form-floating my-4">
                             <input type="email" class="form-control" name="email" placeholder="Email address *" value="{{ old('email') }}" required="">
@@ -175,6 +178,24 @@
 @endsection
 
 @push('scripts')
+    <!-- Добавляем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Добавляем библиотеку Inputmask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Применяем маску для телефона
+            $('input[name="phone"]').inputmask({
+                mask: '+7 (999) 999-99-99',
+                placeholder: '_',
+                showMaskOnHover: false,
+                showMaskOnFocus: true,
+                clearIncomplete: true
+            });
+        });
+    </script>
     <!-- Добавляем Font Awesome для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 @endpush
