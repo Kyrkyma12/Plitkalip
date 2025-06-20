@@ -647,18 +647,18 @@
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Обработка кликов по пагинации
+            
             document.querySelectorAll('.pagination a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
 
-                    // Получаем текущие параметры фильтрации
+                   
                     const params = new URLSearchParams(window.location.search);
 
-                    // Получаем URL страницы пагинации
+                    Получаем URL страницы пагинации
                     const pageUrl = new URL(this.href);
 
-                    // Объединяем параметры
+                   
                     const newParams = new URLSearchParams(pageUrl.search);
                     params.forEach((value, key) => {
                         if (key !== 'page' && !newParams.has(key)) {
@@ -666,7 +666,7 @@
                         }
                     });
 
-                    // Перенаправляем с сохраненными параметрами
+                    
                     window.location.href = `${pageUrl.pathname}?${newParams.toString()}`;
                 });
             });
@@ -676,41 +676,41 @@
             const colorFilterSection = document.querySelector('#color-filters');
             const colorFilterCheckboxes = document.querySelectorAll('.color-checkbox');
 
-            // Определяем ID категорий, для которых нужно скрывать фильтр по цвету
-            const categoriesToHideColor = ['3', '6', '4', '8', '9']; // Замените на реальные ID категорий
+            
+            const categoriesToHideColor = ['3', '6', '4', '8', '9']; 
 
-            // Функция проверки, нужно ли скрывать фильтр по цвету
+            
             function shouldHideColorFilter() {
                 const selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked'))
                     .map(cb => cb.value);
 
-                // Если выбрана только одна категория и она в списке для скрытия
+                
                 if (selectedCategories.length === 1 && categoriesToHideColor.includes(selectedCategories[0])) {
                     return true;
                 }
 
-                // Если выбрано несколько категорий - оставляем фильтр
+                
                 return false;
             }
 
-            // Обновление видимости фильтра по цвету
+            
             function updateColorFilterVisibility() {
                 if (shouldHideColorFilter()) {
-                    // Плавное скрытие
+                    
                     colorFilterSection.style.opacity = '0';
                     setTimeout(() => {
                         colorFilterSection.style.display = 'none';
 
-                        // Сбрасываем выбранные цвета
+                        
                         colorFilterCheckboxes.forEach(checkbox => {
                             checkbox.checked = false;
                         });
 
-                        // Обновляем скрытое поле формы
+                        
                         document.getElementById('hdnColors').value = '';
                     }, 300);
                 } else {
-                    // Плавное отображение
+                    
                     colorFilterSection.style.display = 'block';
                     setTimeout(() => {
                         colorFilterSection.style.opacity = '1';
@@ -718,42 +718,42 @@
                 }
             }
 
-            // Обработчики событий для категорий
+            
             categoryCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
-                    // Обновляем список выбранных категорий
+                    
                     const selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked'))
                         .map(c => c.value)
                         .join(',');
                     document.getElementById('hdnCategories').value = selectedCategories;
 
-                    // Обновляем видимость фильтра по цвету
+                    
                     updateColorFilterVisibility();
 
-                    // Отправляем форму
+                    
                     document.getElementById('frmfilter').submit();
                 });
             });
 
-            // Инициализация при загрузке
+            
             updateColorFilterVisibility();
 
-            // Добавляем CSS для плавности
+            
             colorFilterSection.style.transition = 'opacity 0.3s ease';
         });
         document.addEventListener('DOMContentLoaded', function() {
-            // Category filter logic
+            
             const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
             const secondaryFilters = document.querySelector('.secondary-filters');
 
-            // Initialize filters visibility
+            
             function initFilters() {
                 const hasCategories = document.querySelectorAll('.category-checkbox:checked').length > 0;
                 secondaryFilters.style.display = hasCategories ? 'block' : 'none';
                 secondaryFilters.style.opacity = hasCategories ? '1' : '0';
             }
 
-            // Only for category changes
+            // 
             function handleCategoryChange() {
                 const selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked'))
                     .map(c => c.value).join(',');
@@ -762,7 +762,7 @@
                 submitForm();
             }
 
-            // For other filters
+            
             function handleFilterChange() {
                 document.getElementById('hdnSizes').value =
                     Array.from(document.querySelectorAll('.size-checkbox:checked')).map(c => c.value).join(',');
@@ -773,7 +773,7 @@
                 submitForm();
             }
 
-            // Price filter
+            
             function handlePriceChange() {
                 const [min, max] = this.value.split(',');
                 document.getElementById('hdnMinPrice').value = min;
@@ -781,12 +781,12 @@
                 submitForm();
             }
 
-            // Form submit
+            
             function submitForm() {
                 document.getElementById('frmfilter').submit();
             }
 
-            // Event listeners
+            
             categoryCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', handleCategoryChange);
             });
@@ -797,11 +797,11 @@
 
             $("[name='price_range']").on("change", handlePriceChange);
 
-            // Initial setup
+            
             initFilters();
         });
         document.addEventListener('DOMContentLoaded', function() {
-            // Category filter logic
+            
             const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
             const secondaryFilters = document.querySelector('.secondary-filters');
 
@@ -836,7 +836,7 @@
                 });
             });
 
-            // Unified filter handler
+            
             function handleFilterChange() {
                 document.getElementById('hdnSizes').value =
                     Array.from(document.querySelectorAll('.size-checkbox:checked')).map(c => c.value).join(',');
@@ -847,12 +847,12 @@
                 submitForm();
             }
 
-            // Event listeners for all filters
+            
             document.querySelectorAll('.size-checkbox, .color-checkbox, .brand-checkbox').forEach(element => {
                 element.addEventListener('change', handleFilterChange);
             });
 
-            // Price range handler
+            
             $("[name='price_range']").on("change", function(){
                 const [min, max] = this.value.split(',');
                 document.getElementById('hdnMinPrice').value = min;
@@ -860,12 +860,12 @@
                 submitForm();
             });
 
-            // Form submission handler
+            
             function submitForm() {
                 document.getElementById('frmfilter').submit();
             }
 
-            // Initial setup
+            
             toggleSecondaryFilters();
         });
         document.addEventListener('DOMContentLoaded', function() {
@@ -917,7 +917,7 @@
             })
         })
         $(function(){
-            // Обработка изменения фильтров
+            
             $("#pagesize").on("change", function(){
                 $("#size").val($("#pagesize option:selected").val());
                 $("#frmfilter").submit();
