@@ -93,22 +93,22 @@
                                     </div>
                                 </div>
                             @endforeach
-                        </div><!-- /.swiper-wrapper -->
-                    </div><!-- /.swiper-container js-swiper-slider -->
+                        </div>
+                    </div>
 
                     <div
                         class="products-carousel__prev products-carousel__prev-1 position-absolute top-50 d-flex align-items-center justify-content-center">
                         <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_prev_md" />
                         </svg>
-                    </div><!-- /.products-carousel__prev -->
+                    </div>
                     <div
                         class="products-carousel__next products-carousel__next-1 position-absolute top-50 d-flex align-items-center justify-content-center">
                         <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_next_md" />
                         </svg>
-                    </div><!-- /.products-carousel__next -->
-                </div><!-- /.position-relative -->
+                    </div>
+                </div>
             </section>
 
             <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
@@ -183,7 +183,7 @@
                     }'>
                                 <div class="swiper-wrapper">
                                     @foreach($sproducts as $sproduct)
-                                        @if($sproduct->is_on_sale == 1) <!-- Показываем только товары со скидкой -->
+                                        @if($sproduct->is_on_sale == 1)
                                         <div class="swiper-slide product-card product-card_style3">
                                             <div class="pc__img-wrapper">
                                                 <a href="{{ route('shop.product.details', ['product_slug' => $sproduct->slug]) }}">
@@ -212,8 +212,8 @@
                                         @endif
                                     @endforeach
                                 </div>
-                            </div><!-- /.swiper-container js-swiper-slider -->
-                        </div><!-- /.position-relative -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -277,7 +277,7 @@
                         </div>
                     </div>
                     @endforeach
-                </div><!-- /.row -->
+                </div>
 
                 <div class="text-center mt-2">
                     <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="{{route('shop.index')}}">{{__('Смотреть все')}}</a>
@@ -286,11 +286,11 @@
         </div>
         <style>
             .custom-height-box {
-                height: 300px; /* На мобильных */
+                height: 300px; 
             }
             @media (min-width: 768px) {
                 .custom-height-box {
-                    height: 500px; /* На планшетах и выше */
+                    height: 500px; 
                 }
             }
             .custom-height {
